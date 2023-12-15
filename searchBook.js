@@ -2,6 +2,7 @@ let getNameBook = document.getElementById("getNameBook");
 let getSKUBook = document.getElementById("getSKUBook");
 
 let display = document.getElementById("display");
+let totalProduct = document.getElementById("total-product");
 
 async function getBookByName() {
   let request = await fetch(
@@ -35,7 +36,7 @@ async function getBookByName() {
                 <img
                 width={500}
                 height={500}
-                src=/halaman-produk/${index + 101}.jpg
+                src=/halaman-produk/${item.sku}.jpg
                 alt=page-${item.sku}
                 class="text-lg rounded-t-lg"
                 />
@@ -111,6 +112,7 @@ async function getBookByName() {
     console.log(getNameBook.value);
 
     display.innerHTML = arrMaping;
+    totalProduct.innerHTML = eBooks.length;
   } else if (isSucceeded == false) {
     tb.innerHTML = `<p>Tidak ada buku</p>`;
   }
