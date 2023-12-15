@@ -35,7 +35,7 @@ async function getBookByName() {
                 <img
                 width={500}
                 height={500}
-                src=${item.linkPage}
+                src=/halaman-produk/${index + 101}.jpg
                 alt=page-${item.sku}
                 class="text-lg rounded-t-lg"
                 />
@@ -152,7 +152,10 @@ async function getBookBySKU() {
                 <img
                 width={500}
                 height={500}
-                src='/halaman-produk/'${index + 101}
+                src='/halaman-produk/'${
+                  index + 101 ||
+                  "https://albertwalicki.com/_next/image?url=%2Flogo.png&w=128&q=75"
+                }  
                 alt=page-${item.sku}
                 class="text-lg rounded-t-lg"
                 />
@@ -232,3 +235,5 @@ async function getBookBySKU() {
     display.innerHTML = `<p>Tidak ada Buku>`;
   }
 }
+
+console.log();
