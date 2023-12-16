@@ -27,7 +27,7 @@ async function getBookByName() {
         return `
         <div
                 key={item.sku}
-                class="max-w-[40%] sm:max-w-[18%] lg:max-w-[12%] bg-slate-950 rounded-md shadow-md"
+                class="max-w-[40%] sm:max-w-[25%] lg:max-w-[12%] bg-slate-950 rounded-md shadow-md"
             >
                 <span class="bg-yellow-500 px-0.5 absolute ml-0.5 rounded-ss-md">
                 <p class="text-[50%] font-semibold text-red-600">51%</p>
@@ -41,7 +41,7 @@ async function getBookByName() {
                 class="text-lg rounded-t-lg"
                 />
                 <div class="content text-white p-2">
-                <p class="text-[60%] truncate sm:text-[65%]">
+                <p class="text-[60%] sm:text-[65%] modernWay">
                     ${item.sku}. ${item.bookName}
                 </p>
                 <div class="flex my-2">
