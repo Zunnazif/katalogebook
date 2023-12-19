@@ -36,7 +36,7 @@ async function getBookByName() {
                 <img
                 width={500}
                 height={500}
-                src=/halaman-produk/${item.sku}.jpg
+                src=${item.linkPage}
                 alt=page-${item.sku}
                 class="text-lg rounded-t-lg"
                 />
