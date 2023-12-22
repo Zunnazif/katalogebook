@@ -120,22 +120,23 @@ async function getBookByName() {
 
 getBookByName();
 
-async function getBookBySKU() {
-  console.log(getSKUBook.value);
+async function getBookByNameDesc() {
   let request = await fetch(
-    "https://zunnaserver.vercel.app/ebook/GetMultipleEBookBySKU",
+    "https://zunnaserver.vercel.app/ebook/GetMultipleEBookByName",
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        sku: getSKUBook.value,
+        bookName: getNameBook.value,
       }),
     }
   );
 
-  let { eBooks, isSucceeded } = await request.json();
+  let { eBooks, isSucceeded, message } = await request.json();
+
+  eBooks = eBooks.sort((a, b) => b.sku - a.sku);
 
   console.log(eBooks, isSucceeded);
 
@@ -145,7 +146,7 @@ async function getBookBySKU() {
         return `
         <div
                 key={item.sku}
-                class="max-w-[40%] sm:max-w-[18%] lg:max-w-[12%] bg-slate-950 rounded-md shadow-md"
+                class="max-w-[40%] sm:max-w-[25%] lg:max-w-[12%] bg-slate-950 rounded-md shadow-md"
             >
                 <span class="bg-yellow-500 px-0.5 absolute ml-0.5 rounded-ss-md">
                 <p class="text-[50%] font-semibold text-red-600">51%</p>
@@ -154,15 +155,12 @@ async function getBookBySKU() {
                 <img
                 width={500}
                 height={500}
-                src='/halaman-produk/'${
-                  index + 101 ||
-                  "https://albertwalicki.com/_next/image?url=%2Flogo.png&w=128&q=75"
-                }  
+                src=${item.linkPage}
                 alt=page-${item.sku}
                 class="text-lg rounded-t-lg"
                 />
                 <div class="content text-white p-2">
-                <p class="text-[60%] truncate sm:text-[65%]">
+                <p class="text-[60%] sm:text-[65%] modernWay">
                     ${item.sku}. ${item.bookName}
                 </p>
                 <div class="flex my-2">
@@ -230,12 +228,11 @@ async function getBookBySKU() {
             </div>`;
       })
       .join("");
-    console.log(arrMaping);
+    console.log(getNameBook.value);
 
     display.innerHTML = arrMaping;
+    totalProduct.innerHTML = eBooks.length;
   } else if (isSucceeded == false) {
-    display.innerHTML = `<p>Tidak ada Buku>`;
+    tb.innerHTML = `<p>Tidak ada buku</p>`;
   }
 }
-
-console.log();
